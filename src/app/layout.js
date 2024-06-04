@@ -3,8 +3,8 @@ import "bootstrap/dist/css/bootstrap.css";
 import Bootstrapjs from "../InstallBSJS";
 
 export const metadata = {
-  title: "Not Decided Yet",
-  description: "A chat app",
+  title: "ChatMate",
+  description: "A app making real time chatting very easy and effective..",
 };
 
 export default function RootLayout({ children }) {
