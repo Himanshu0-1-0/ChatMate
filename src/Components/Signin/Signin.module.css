@@ -2,7 +2,7 @@
 .container {
     position: relative;
     width: 100%;
-    background-color: #fff;
+    background-color: #f8fff9;
     min-height: 100vh;
     overflow: hidden;
     font-family: inherit;
@@ -124,7 +124,7 @@
   
   .btn {
     width: 150px;
-    background-color: #46f1aa;
+    background-color: #38be5e ;
     border: none;
     outline: none;
     height: 49px;
@@ -160,7 +160,7 @@
     top: -10%;
     right: 48%;
     transform: translateY(-50%);
-    background-image: linear-gradient(-45deg, #38be5e 0%, rgb(55, 228, 156) 100%);
+    background-image: linear-gradient(-45deg, #38be5e 0%, #38be5e 100%);
     transition: 1.8s ease-in-out;
     border-radius: 50%;
     z-index: 6;
