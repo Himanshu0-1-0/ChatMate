@@ -1,0 +1,6 @@
+.cont{
+    background-color: #38be5e;
+    min-height:100vh;
+    display: flex;
+    flex-direction: column;
+}

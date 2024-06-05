@@ -1,0 +1,27 @@
+.Logo-img{
+    width:180px;
+    height: 55px;
+    aspect-ratio:initial;
+}
+.ico{
+    height: 55px;
+    width: 55px;
+    margin-left: 4vw;
+}
+.navv{
+    min-height: 72px;
+    /* overflow: hidden; */
+    margin: 10px;
+    border-radius: 20px;
+}
+.itl{
+    display: flex;
+    align-items: center;
+    margin-right: 5vw;
+}
+/* @media (max-width: 991px){
+    .Logo-img{
+        width: 170px;
+        height: 50px;
+    }
+} */
