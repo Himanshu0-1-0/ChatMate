@@ -1,10 +1,14 @@
+import Sidebar from "../Sidebar/Sidebar"
 import "./WorkingArea.css"
 
 export default function WorkingArea() {
   return (
     <>
-      <div className="p">
-        Yello
+      <div className="con">
+        <div className="sidebar">
+            <Sidebar/>
+        </div>
+        {/* <div className="changeArea"></div> */}
       </div>
     </>
   )

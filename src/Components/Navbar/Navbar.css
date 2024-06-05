@@ -19,6 +19,10 @@
     align-items: center;
     margin-right: 5vw;
 }
+.text{
+    font-weight: 600;
+    font-size: 1.1rem;
+}
 /* @media (max-width: 991px){
     .Logo-img{
         width: 170px;

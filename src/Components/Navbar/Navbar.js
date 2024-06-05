@@ -30,14 +30,14 @@ export default function Navbar() {
             <ul className="navbar-nav mx-5 " >
               <li className="nav-item itl">
                 <ChatIcon/>
-                <a className="nav-link" href="#">
+                <a className="nav-link text" href="#">
                   Chats
                 </a>
               </li>
               <li className="nav-item dropdown itl">
                 <PersonIcon/>
                 <a
-                  className="nav-link dropdown-toggle"
+                  className="nav-link dropdown-toggle text"
                   href="#"
                   role="button"
                   data-bs-toggle="dropdown"
@@ -47,12 +47,12 @@ export default function Navbar() {
                 </a>
                 <ul className="dropdown-menu">
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <a className="dropdown-item text" href="#">
                       Profile Page
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <a className="dropdown-item text" href="#">
                       Logout
                     </a>
                   </li>

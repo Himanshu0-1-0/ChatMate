@@ -7,7 +7,7 @@ export default function MainPage() {
     <>
       <div className="cont">
         <Navbar/>
-        {/* <WorkingArea/> */}
+        <WorkingArea/>
       </div>
     </>
   )

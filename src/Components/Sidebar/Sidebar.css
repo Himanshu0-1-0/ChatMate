@@ -1,0 +1,40 @@
+.topp{
+    /* background-color: bl; */
+    margin: 10px;
+    border-radius: 5px;
+    height: 6vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.ele{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.p{
+    margin-left: 1vw;
+    font-weight: 600;
+}
+
+.search{
+    margin: 10px;
+    /* height: 6vh; */
+    /* background-color: black; */
+}
+.ip{
+    border-radius: 5px;
+}
+.convo{
+    /* background-color: rebeccapurple; */
+    margin: 10px;
+    border-radius: 5px;
+    height: 66vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+@media (max-width:815px){
+    .p{
+        display: none;
+    }
+}

@@ -1,3 +1,18 @@
-.p{
-    background-color: blue;
+.con{
+    background-color: #fff;
+    flex: 1;
+    margin: 10px;
+    border-radius: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+}
+.sidebar{
+    /* background-color: aliceblue; */
+    /* border: blue solid; */
+    flex: 0.35;
+}
+.changeArea{
+    border: red solid;
+    flex:0.65;
 }
