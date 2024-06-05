@@ -1,6 +1,7 @@
 import "./Sidebar.css";
 import GroupsIcon from "@mui/icons-material/Groups";
 import PublicIcon from "@mui/icons-material/Public";
+import ConvoItem from "../ConvoItem/ConvoItem";
 export default function Sidebar() {
   return (
     <div className="conta">
@@ -31,7 +32,14 @@ export default function Sidebar() {
         </div>
       </div>
       <div className="convo border border-dark">
-        
+        <ConvoItem name="Himanshu" msg="Hello.. How Are..." time="today"/>
+        <ConvoItem name="Himanshu" msg="Hello.. How Are You" time="today"/>
+        <ConvoItem name="Himanshu" msg="Hello.. How Are You" time="today"/>
+        <ConvoItem name="Himanshu" msg="Hello.. How Are You" time="today"/>
+        <ConvoItem name="Himanshu" msg="Hello.. How Are You" time="today"/>
+        <ConvoItem name="Himanshu" msg="Hello.. How Are You" time="today"/>
+        <ConvoItem name="Himanshu" msg="Hello.. How Are You" time="today"/>
+        <ConvoItem name="Himanshu" msg="Hello.. How Are You" time="today"/>
       </div>
     </div>
   );

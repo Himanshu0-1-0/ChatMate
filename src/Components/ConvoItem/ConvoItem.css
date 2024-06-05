@@ -1,0 +1,131 @@
+.convo-item-cont{
+    display: flex;
+    margin: 10px;
+    margin-left: 30px;
+    margin-top: 20px;
+    /* background-color: black; */
+    border-radius: 5px;
+    /* background-color: rgb(22, 24, 21); */
+    height: 65px;
+    align-items: center;
+    justify-content:space-between;
+}
+.div1{
+    width: 30vw;
+    display: flex;
+    align-items: center;
+    
+}
+.convo-img img{
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    margin-bottom: 3px;
+}
+
+.name{
+    margin-left: 1vw;
+    display: flex;
+    flex-direction: column;
+}
+.na{
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.last-msg{
+    font-size: 0.9rem;
+    color: #777;
+}
+.last-seen{
+    margin-left: 7vw;
+    color: #777;
+    font-size: 0.9rem;
+    margin-right: 4vw;
+}
+@media (max-width:903px){
+    .convo-item-cont{
+        margin-left: 15px;
+        height: 60px;
+    }
+    .div1{
+        width: 15vw;
+        
+    }
+    .convo-img img{
+        width: 47px;
+        height: 47px;
+    }
+    .na{
+        font-size: 1rem;
+    }
+    .last-msg{
+        font-size: 0.7rem;
+    }
+    .last-seen{
+        margin-left: 7vw;
+        color: #777;
+        font-size: 0.7rem;
+        margin-right: 4vw;
+    }
+}
+
+@media (max-width:636px){
+    .convo-item-cont{
+        margin-left: 15px;
+        height: 60px;
+    }
+    .div1{
+        width: 15vw;
+        
+    }
+    .convo-img img{
+        width: 45px;
+        height: 45px;
+    }
+    .na{
+        font-size: 1rem;
+    }
+    .last-msg{
+        display: none;
+        font-size: 0.7rem;
+    }
+    .last-seen{
+        display: none;
+        margin-left: 7vw;
+        color: #777;
+        font-size: 0.7rem;
+        margin-right: 4vw;
+    }
+}
+
+
+
+@media (max-width:481px){
+    .convo-item-cont{
+        margin-left: 10px;
+        height: 50px;
+    }
+    .div1{
+        width: 10vw;
+        
+    }
+    .convo-img img{
+        width: 35px;
+        height: 35px;
+    }
+    .na{
+        font-size: 0.8rem;
+    }
+    .last-msg{
+        display: none;
+        font-size: 0.7rem;
+    }
+    .last-seen{
+        display: none;
+        margin-left: 7vw;
+        color: #777;
+        font-size: 0.7rem;
+        margin-right: 4vw;
+    }
+}
