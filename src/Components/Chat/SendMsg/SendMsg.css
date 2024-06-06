@@ -1,0 +1,14 @@
+.send-msg-cont{
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+.txtar .ip{
+    width: 55vw;
+    overflow-y: auto;
+    border: none;
+    resize: none;
+    outline: none;
+}

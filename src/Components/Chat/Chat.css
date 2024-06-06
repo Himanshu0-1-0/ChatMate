@@ -1,0 +1,29 @@
+.chat-cont{
+    /* background-color: red; */
+    height: 100%;
+    overflow:hidden ;
+    display: flex;
+    flex-direction: column;
+}
+.chat-title{
+    /* background-color: blue; */
+    /* flex:0.11; */
+    height: 9vh;
+    margin:0 10px;
+    border-radius: 5px;
+}
+.msg-area{
+    /* background-color: violet; */
+    /* flex:0.79; */
+    height: 63vh;
+    margin: 10px;
+    border-radius: 5px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.msg-btn{
+    /* background-color: green; */
+    flex: 1;
+    border-radius: 5px;
+    margin:0 10px;
+}

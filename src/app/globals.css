@@ -6,3 +6,14 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+::-webkit-scrollbar {
+  width: 0px;
+  
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #0e163000; 
+  
+}
+ 

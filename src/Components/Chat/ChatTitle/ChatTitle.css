@@ -1,0 +1,22 @@
+.title-cont{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+.base{
+    display: flex;
+    align-items: center;
+}
+.photo-prof img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.name-prof{
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+.delete{
+    display: flex;
+}

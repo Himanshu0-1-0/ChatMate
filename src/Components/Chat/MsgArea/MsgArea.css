@@ -1,0 +1,19 @@
+.msgg-con{
+    background-image: url('/Wallpaper.png'); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    /* background-attachment: fixed; */
+    background-clip: border-box;
+    background-origin: padding-box;
+    background-blend-mode: overlay;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+        /* background-color: black; */
+}
+.msges{
+    /* background-color: blue; */
+    display: flex;
+    flex-direction: column;
+}

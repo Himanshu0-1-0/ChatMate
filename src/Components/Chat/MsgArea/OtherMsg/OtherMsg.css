@@ -1,0 +1,40 @@
+.OthMsg-cont{
+    /* background-color: aqua; */
+    /* align-self: flex-end; */
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    margin-left: 15px;
+    max-width: 50vw;
+    
+}
+.msg-o{
+    background-color: #dadada;
+    padding:5px  15px ;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    min-width: 12vw;
+}
+.o-img img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+} 
+.o-nam{
+    /* color: white; */
+    /* background-color: blue; */
+    font-weight: 700;
+    font-size: 1rem;
+    color: #091b4c;
+}
+.o-gg{
+    font-weight: 600;
+    font-size: 1rem;
+    color: #333;
+}
+.o-time{
+    align-self: flex-end;
+    font-size: 0.8rem;
+    color: #444;
+}
