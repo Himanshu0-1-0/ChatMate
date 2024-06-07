@@ -1,0 +1,7 @@
+.content-grpmodal{
+    max-height: 70vh;
+    overflow-y: scroll;
+}
+.clos-btn{
+    padding: 1px 5px;
+}

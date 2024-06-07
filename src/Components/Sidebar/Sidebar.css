@@ -11,6 +11,11 @@
     justify-content: space-around;
     align-items: center;
 }
+.grpp-btnn{
+    border: none;
+    color: black;
+    background-color: white;
+}
 .ele{
     display: flex;
     align-items: center;

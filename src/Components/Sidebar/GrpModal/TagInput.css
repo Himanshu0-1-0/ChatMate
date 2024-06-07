@@ -1,0 +1,36 @@
+.tag-input{
+    display: flex;
+    flex-direction: column;
+    /* background-color: black; */
+    padding: 1vw;
+}
+.grptg h1{
+    font-size: 1.9rem;
+    font-weight: 700;
+}
+.cretebtn{
+    align-self: flex-end;
+}
+.tagss{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  gap: 5px;
+}
+.tag{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    background-color: rgb(239, 239, 239);
+}
+.tag-co{
+    font-weight: 600;
+}
+
+.inp-tp{
+    font-weight: 700;
+}
+.inp-tp::placeholder{
+    font-weight:400;
+}
