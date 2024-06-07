@@ -4,15 +4,81 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import PublicIcon from "@mui/icons-material/Public";
 import ConvoItem from "../ConvoItem/ConvoItem";
 import GroupModal from "./GrpModal/GrpModal";
-import { useState } from "react";
+import { toast } from 'react-toastify';
+import { useState,useRef } from "react";
 export default function Sidebar() {
+  //states
   const [isGrpModalOpen,setIsGrpModalOpen] = useState(false);
+
+  //refs
+  const SearchBoxRef= useRef(null);
+
+  // toasts
+  const errorToast = (msg) => {
+    toast.error(msg, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+
+  const successToast = (msg) => {
+    toast.success(msg, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+
+  //fncts
   function handleGrpModal(){
     setIsGrpModalOpen(true);
   }
   function makeGrpModalOff(){
     setIsGrpModalOpen(false);
   }
+  const AddToBackend = async () => {
+    if (!SearchBoxRef.current || SearchBoxRef.current.value === "") {
+      errorToast("Please Provide UserName");
+      return;
+    }
+    const inputValue = SearchBoxRef.current.value;
+
+    try {
+      // Make the POST request to the backend
+      const response = await fetch('http://localhost:5000/user/addChat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        },
+        body: JSON.stringify({ username: inputValue }), // Ensure the key is 'username'
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        errorToast(`Network response was not ok: ${errorText}`);
+        return;
+      }
+
+      const result = await response.json();
+      successToast(result.message);
+    } catch (error) {
+      errorToast(error.message);
+    }
+  };
+
+  // return
   return (
     <div className="conta">
       <GroupModal isOpen={isGrpModalOpen} onRequestClose={makeGrpModalOff}/>
@@ -36,9 +102,10 @@ export default function Sidebar() {
             placeholder="Search Username..."
             aria-label="Recipient's username"
             aria-describedby="basic-addon2"
+            ref={SearchBoxRef}
           />
           <div className="input-group-append ">
-            <button className="btn btn-dark border border-dark ip"  type="button">
+            <button className="btn btn-dark border border-dark ip"  type="button" onClick={AddToBackend}>
               Search
             </button>
           </div>
