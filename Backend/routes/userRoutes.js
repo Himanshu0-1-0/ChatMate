@@ -1,5 +1,5 @@
 const express = require('express');
-const { registerUser ,loginUser} = require('../controller/userController.js');
+const { registerUser ,loginUser,addChat} = require('../controller/userController.js');
 const authMiddleware = require('../middleware/authMiddleware.js');
 
 const userRoute = express.Router();
@@ -7,7 +7,7 @@ const userRoute = express.Router();
 // Registration route
 userRoute.post('/register', registerUser);
 userRoute.post('/login', loginUser);
-
+userRoute.post('/addChat',authMiddleware,addChat)
 userRoute.get('/protected', authMiddleware,(req, res) => {
     res.status(200).json({ message: 'This is a protected route', user: req.user });
   });

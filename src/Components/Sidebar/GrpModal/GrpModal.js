@@ -3,6 +3,7 @@ import "./GrpModal.css"
 import React from 'react';
 import Modal from 'react-modal';
 import TagInput from "./TagInput";
+import { BorderAll } from "@mui/icons-material";
 const GroupModal = ({ isOpen, onRequestClose }) => {
   const customStyles = {
     content: {
