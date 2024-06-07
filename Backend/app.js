@@ -23,6 +23,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 const User = require("./models/userModel.js")
+const authMiddleware =require("./middleware/authMiddleware.js")
 const multer = require('multer');
 const storage = multer.diskStorage({
     destination: './uploads/profilePics',
@@ -51,7 +52,7 @@ const upload = multer({
       checkFileType(file, cb);
     }
   }).single('profilePic');
-app.post('/uploadProfilePic', async (req, res) => {
+app.post('/uploadProfilePic', authMiddleware ,async (req, res) => {
     upload(req, res, async (err) => {
       if (err) {
         return res.status(400).send(err);
@@ -61,12 +62,12 @@ app.post('/uploadProfilePic', async (req, res) => {
         return res.status(400).send('No file selected');
       }
   
-    //   console.log('File uploaded:', req.file);
+      // console.log('File uploaded:', req.user);
     //   console.log('User ID:', req.body.userId);
   
       try {
         const user = await User.findByIdAndUpdate(
-          req.body.userId,
+          req.user.id,
           { profilePic: `/uploads/profilePics/${req.file.filename}` },
           { new: true }
         );
