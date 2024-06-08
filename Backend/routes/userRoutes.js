@@ -1,5 +1,5 @@
 const express = require('express');
-const { registerUser ,loginUser,addChat} = require('../controller/userController.js');
+const { registerUser ,loginUser,addChat,addGrp} = require('../controller/userController.js');
 const authMiddleware = require('../middleware/authMiddleware.js');
 
 const userRoute = express.Router();
@@ -8,9 +8,11 @@ const userRoute = express.Router();
 userRoute.post('/register', registerUser);
 userRoute.post('/login', loginUser);
 userRoute.post('/addChat',authMiddleware,addChat)
-userRoute.get('/protected', authMiddleware,(req, res) => {
-    res.status(200).json({ message: 'This is a protected route', user: req.user });
-  });
+userRoute.post('/addGrp',authMiddleware,addGrp)
+
+// userRoute.get('/protected', authMiddleware,(req, res) => {
+//     res.status(200).json({ message: 'This is a protected route', user: req.user });
+//   });
 
 // const token = localStorage.getItem('token');
 

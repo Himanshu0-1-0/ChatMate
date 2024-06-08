@@ -104,3 +104,60 @@ exports.addChat = async (req, res) => {
     return res.status(500).json({ error: 'Server error' });
   }
 };
+
+exports.addGrp= async (req,res)=>{
+  const user_id = req.user.id;
+  const { grpname, usernames } = req.body;
+
+  try {
+    // Find users with the given usernames
+    let users = await User.find({ username: { $in: usernames } });
+
+    if (users.length === 0) {
+      return res.status(400).json({ error: 'No users found with the given usernames' });
+    }
+
+    const user = await User.findById(user_id);
+    if (!user) {
+      return res.status(404).json({ error: 'Admin user not found' });
+    }
+
+    // Check if admin user is in the users array, if not, add them
+    const userIsInArray = users.some(u => u._id.equals(user._id));
+    if (!userIsInArray) {
+      users.push(user);
+    }
+
+    // If users array contains only the admin, return an error
+    if (users.length === 1) {
+      return res.status(400).json({ error: 'Cannot create a group with only the admin' });
+    }
+
+    // Create group chat details
+    const groupChat = {
+      isGrpChat: true,
+      chattedUsername: grpname,
+      grpProfilePic: 'http://localhost:5000/uploads/profilePics/profilePic-1717740514303.png',
+      adminUsername: user.username,
+      members: users.map(u => ({
+        chattedUsername: u.username,
+        chattedUserProfilePic: u.profilePic
+      }))
+    };
+
+    // Update each user's chat array with the new group chat at the beginning
+    const userUpdates = users.map(u => {
+      return User.updateOne(
+        { _id: u._id },
+        { $push: { chats: { $each: [groupChat], $position: 0 } } }
+      );
+    });
+
+    await Promise.all(userUpdates);
+
+    res.status(201).json({ message: 'Group chat created successfully', groupChat });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
+  }
+}
