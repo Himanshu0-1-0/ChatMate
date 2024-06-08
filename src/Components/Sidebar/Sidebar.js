@@ -5,10 +5,11 @@ import PublicIcon from "@mui/icons-material/Public";
 import ConvoItem from "../ConvoItem/ConvoItem";
 import GroupModal from "./GrpModal/GrpModal";
 import { toast } from 'react-toastify';
-import { useState,useRef } from "react";
+import { useState,useRef,useEffect } from "react";
 export default function Sidebar() {
   //states
   const [isGrpModalOpen,setIsGrpModalOpen] = useState(false);
+  const [chats, setChats] = useState([]);
 
   //refs
   const SearchBoxRef= useRef(null);
@@ -39,6 +40,29 @@ export default function Sidebar() {
       theme: "dark",
     });
   };
+  // use effect 
+
+  useEffect(() => {
+    const fetchChats = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/user/getchats', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          },
+        });
+        if (!response.ok) {
+          errorToast('Failed to fetch chats,,, Please Reload..');
+          return ;
+        }
+        const data = await response.json();
+        setChats(data.chats);
+      } catch (error) {
+        errorToast(error.message);
+      }
+    };
+    fetchChats();
+  }, []);
 
   //fncts
   function handleGrpModal(){
@@ -112,14 +136,17 @@ export default function Sidebar() {
         </div>
       </div>
       <div className="convo border border-dark">
-        <ConvoItem name="Himanshu" msg="Hello.. How Are..." time="today"/>
+        {/* <ConvoItem name="Himanshu" msg="Hello.. How Are..." time="today"/>
         <ConvoItem name="Himanshu" msg="Hello.. How Are You" time="today"/>
         <ConvoItem name="Himanshu" msg="Hello.. How Are You" time="today"/>
         <ConvoItem name="Himanshu" msg="Hello.. How Are You" time="today"/>
         <ConvoItem name="Himanshu" msg="Hello.. How Are You" time="today"/>
         <ConvoItem name="Himanshu" msg="Hello.. How Are You" time="today"/>
         <ConvoItem name="Himanshu" msg="Hello.. How Are You" time="today"/>
-        <ConvoItem name="Himanshu" msg="Hello.. How Are You" time="today"/>
+        <ConvoItem name="Himanshu" msg="Hello.. How Are You" time="today"/> */}
+        {chats.map((chat, index) => (
+          <ConvoItem key={index} name={chat.chattedUsername} msg="Hello.. How Are You" time="today" profilepic={chat.isGrpChat ? chat.grpProfilePic:chat.chattedUserProfilePic}/>
+        ))}
       </div>
     </div>
   );

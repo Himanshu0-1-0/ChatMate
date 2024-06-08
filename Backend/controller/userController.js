@@ -161,3 +161,27 @@ exports.addGrp= async (req,res)=>{
     res.status(500).json({ error: 'Server error' });
   }
 }
+
+exports.getChat = async (req, res) => {
+  try {
+    // Get user ID from request
+    const userId = req.user.id;
+
+    // Find the user by ID
+    const user = await User.findById(userId);
+
+    // If user not found, return error
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Extract chats from user object
+    const chats = user.chats;
+
+    // Return chats
+    res.status(200).json({ chats });
+  } catch (error) {
+    console.error('Error fetching chats:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};

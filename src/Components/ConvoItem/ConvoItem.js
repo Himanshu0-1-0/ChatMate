@@ -1,5 +1,5 @@
 import "./ConvoItem.css"
-export default function ConvoItem({name,msg,time}) {
+export default function ConvoItem({name,msg,time,profilepic}) {
     let msgs = msg.length;
     let MessageShort=msg;
     if(msgs>24 ){
@@ -9,7 +9,7 @@ export default function ConvoItem({name,msg,time}) {
     <div className="convo-item-cont  border-bottom" >
         <div className="div1">
         <div className="convo-img">
-        <img src="/convoitem/icon1.avif" alt="" />
+        <img src={profilepic} alt="" />
       </div>
       <div className="name">
         <div className="na">
