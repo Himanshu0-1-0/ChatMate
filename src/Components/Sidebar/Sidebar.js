@@ -64,14 +64,14 @@ export default function Sidebar() {
         },
         body: JSON.stringify({ username: inputValue }), // Ensure the key is 'username'
       });
+      const result = await response.json();
 
       if (!response.ok) {
-        const errorText = await response.text();
-        errorToast(`Network response was not ok: ${errorText}`);
+        // const errorText = await response.text();
+        errorToast(result.error);
         return;
       }
 
-      const result = await response.json();
       successToast(result.message);
     } catch (error) {
       errorToast(error.message);
