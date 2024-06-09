@@ -20,24 +20,13 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: 'http://localhost:5000/uploads/profilePics/profilePic-1717740514303.png', 
   },
-  chats: [
-    {
-      isGrpChat: { type: Boolean, required: true },
-      chattedUsername: { type: String },
-      chattedUserProfilePic: { type: String,default: 'http://localhost:5000/uploads/profilePics/profilePic-1717740514303.png' },
-      grpProfilePic: { type: String ,default: 'http://localhost:5000/uploads/profilePics/profilePic-1717740514303.png'},
-      adminUsername: { type: String },
-      members: [
-        {
-          chattedUsername: { type: String },
-          chattedUserProfilePic: { type: String },
-        }
-      ]
-    }
-  ]
-},{
-    timestamps: true 
-  });
+  chats: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Chat',
+  }],
+}, {
+  timestamps: true 
+});
 
 const User = mongoose.model('User', userSchema);
 

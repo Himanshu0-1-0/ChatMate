@@ -59,7 +59,7 @@ const TagInput = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/user/addGrp", {
+      const response = await fetch("http://localhost:5000/chat/addGrp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

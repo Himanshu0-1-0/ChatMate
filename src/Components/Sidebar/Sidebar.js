@@ -45,15 +45,15 @@ export default function Sidebar() {
   useEffect(() => {
     const fetchChats = async () => {
       try {
-        const response = await fetch('http://localhost:5000/user/getchats', {
+        const response = await fetch('http://localhost:5000/chat/getchats', {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
           },
         });
         if (!response.ok) {
-          errorToast('Failed to fetch chats,,, Please Reload..');
-          return ;
+          errorToast('Failed to fetch chats, Please Reload..');
+          return;
         }
         const data = await response.json();
         setChats(data.chats);
@@ -80,7 +80,7 @@ export default function Sidebar() {
 
     try {
       // Make the POST request to the backend
-      const response = await fetch('http://localhost:5000/user/addChat', {
+      const response = await fetch('http://localhost:5000/chat/addChat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ export default function Sidebar() {
         body: JSON.stringify({ username: inputValue }), // Ensure the key is 'username'
       });
       const result = await response.json();
-
+      
       if (!response.ok) {
         // const errorText = await response.text();
         errorToast(result.error);
@@ -136,17 +136,19 @@ export default function Sidebar() {
         </div>
       </div>
       <div className="convo border border-dark">
-        {/* <ConvoItem name="Himanshu" msg="Hello.. How Are..." time="today"/>
-        <ConvoItem name="Himanshu" msg="Hello.. How Are You" time="today"/>
-        <ConvoItem name="Himanshu" msg="Hello.. How Are You" time="today"/>
-        <ConvoItem name="Himanshu" msg="Hello.. How Are You" time="today"/>
-        <ConvoItem name="Himanshu" msg="Hello.. How Are You" time="today"/>
-        <ConvoItem name="Himanshu" msg="Hello.. How Are You" time="today"/>
-        <ConvoItem name="Himanshu" msg="Hello.. How Are You" time="today"/>
-        <ConvoItem name="Himanshu" msg="Hello.. How Are You" time="today"/> */}
-        {chats.map((chat, index) => (
-          <ConvoItem key={index} name={chat.chattedUsername} msg="Hello.. How Are You" time="today" profilepic={chat.isGrpChat ? chat.grpProfilePic:chat.chattedUserProfilePic}/>
-        ))}
+      {chats.length===0 ? ( // Show loading text if loading
+          <div className="loading-text">Loading...</div>
+        ) : (
+          chats.map((chat, index) => (
+            <ConvoItem
+            key={index}
+            name={chat.isGrpChat ? chat.grpName : chat.otherUsername}
+            msg={chat.lastMessage || "No messages yet"}
+            time={chat.lastMessageTime ? new Date(chat.lastMessageTime).toLocaleTimeString() : ""}
+            profilepic={chat.isGrpChat ? chat.grpProfilePic : chat.otherUserProfilePic}
+          />
+          ))
+        )}
       </div>
     </div>
   );

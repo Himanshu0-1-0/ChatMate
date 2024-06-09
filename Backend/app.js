@@ -9,6 +9,8 @@ const path = require('path');
 mongoose.connect("mongodb://localhost:27017/ChatBiz") 
 
 const userRoute =require("./routes/userRoutes.js") 
+const chatRoute =require("./routes/chatRoutes.js") 
+const msgRoute =require("./routes/msgRoutes.js") 
 
 const cors = require('cors');
 
@@ -88,6 +90,8 @@ app.post('/uploadProfilePic', authMiddleware ,async (req, res) => {
 //
 
 app.use("/user",userRoute);
+app.use("/chat",chatRoute);
+app.use("/msg",msgRoute);
 
 
 app.listen(PORT,()=>{

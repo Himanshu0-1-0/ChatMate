@@ -42,8 +42,19 @@
     overflow-x: hidden;
     overflow-y: auto;
 }
+.loading-text{
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 15px;
+    animation: blink 1.5s linear infinite;
+}
 @media (max-width:815px){
     .p{
         display: none;
     }
 }
+@keyframes blink {
+    0%, 100% {opacity: 1;}
+    50% {opacity: 0.2;}
+  }
+  

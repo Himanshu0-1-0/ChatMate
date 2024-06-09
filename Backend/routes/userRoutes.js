@@ -7,9 +7,9 @@ const userRoute = express.Router();
 // Registration route
 userRoute.post('/register', registerUser);
 userRoute.post('/login', loginUser);
-userRoute.post('/addChat',authMiddleware,addChat)
-userRoute.post('/addGrp',authMiddleware,addGrp)
-userRoute.get('/getchats',authMiddleware,getChat)
+
+
+
 // userRoute.get('/protected', authMiddleware,(req, res) => {
 //     res.status(200).json({ message: 'This is a protected route', user: req.user });
 //   });
