@@ -7,4 +7,4 @@ const msgRoute = express.Router();
 msgRoute.post("/getMsg",authMiddleware,getMsg)
 msgRoute.post("/sendMessage",authMiddleware,sendMessage)
 
-module.exports = msgRoute;
+module.exports = msgRoute; 

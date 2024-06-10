@@ -1,7 +1,20 @@
 import "./MsgArea.css"
 import SelfMsg from "./SelfMsg/SelfMsg"
 import OtherMsg from "./OtherMsg/OtherMsg"
+import { useRef,useEffect } from "react";
 export default function MsgArea({ Dataa }) {
+
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [Dataa.messages]); 
+
+
   return (
     <div className="msgg-con">
       <div className="msges">
@@ -22,7 +35,7 @@ export default function MsgArea({ Dataa }) {
             />
           );
         })}
-
+       <div ref={messagesEndRef} />
       </div>
       
     </div>

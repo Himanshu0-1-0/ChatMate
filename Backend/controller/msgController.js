@@ -32,7 +32,7 @@ exports.getMsg = async (req, res) => {
       otherUserId: chat.isGrpChat ? null : chat.members.find(member => member._id.toString() !== userId)._id,
       otherUsername: chat.isGrpChat ? null : chat.members.find(member => member._id.toString() !== userId).username,
       otherUserProfilePic: chat.isGrpChat ? null : chat.members.find(member => member._id.toString() !== userId).profilePic,
-      grpProfilePic: chat.isGrpChat ? chat.grpProfilePic : null,
+      grpProfilePic: chat.isGrpChat ? chat.chatProfilePic : null,
       grpName: chat.isGrpChat ? chat.chatName : null,
       members: chat.isGrpChat ? chat.members : null,
       admin: chat.isGrpChat ? chat.admin : null,

@@ -53,7 +53,7 @@ const upload = multer({
     fileFilter: function(req, file, cb) {
       checkFileType(file, cb);
     }
-  }).single('profilePic');
+  }).single('image');
 app.post('/uploadProfilePic', authMiddleware ,async (req, res) => {
     upload(req, res, async (err) => {
       if (err) {

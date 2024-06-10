@@ -145,7 +145,7 @@ export default function Sidebar() {
             _id={chat._id}
             name={chat.isGrpChat ? chat.grpName : chat.otherUsername}
             msg={chat.lastMessage || "No messages yet"}
-            time={chat.lastMessageTime ? new Date(chat.lastMessageTime).toLocaleTimeString() : ""}
+            time={chat.lastMessageTime ? new Date(chat.lastMessageTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : ""}
             profilepic={chat.isGrpChat ? chat.grpProfilePic : chat.otherUserProfilePic}
           />
           ))

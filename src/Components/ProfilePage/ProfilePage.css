@@ -1,0 +1,21 @@
+.conntt{
+    background-color: #fff;
+    flex: 1;
+    margin: 10px;
+    border-radius: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+}
+
+.prof-img{
+    width: 130px;
+    height: 130px;
+}
+
+.red-on{
+    background-color: #dedede !important;
+}
+.lbb::placeholder{
+    color: #999 !important;
+}
