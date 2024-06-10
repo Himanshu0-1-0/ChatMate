@@ -2,17 +2,18 @@ import "./Chat.css"
 import MsgArea from "./MsgArea/MsgArea"
 import ChatTitle from"./ChatTitle/ChatTitle"
 import SendMsg from "./SendMsg/SendMsg"
-export default function Chat() {
+export default function Chat({Dataa}) {
+  // console.log(Dataa);
   return (
     <div className="chat-cont">
       <div className="chat-title border border-dark">
-        <ChatTitle/>
+        <ChatTitle per_name={Dataa.isGrpChat?Dataa.grpName:Dataa.otherUsername} per_pic={Dataa.isGrpChat?Dataa.grpProfilePic:Dataa.otherUserProfilePic}/>
       </div>
       <div className="msg-area border border-dark">
-        <MsgArea/>
+        <MsgArea Dataa={Dataa}/>
       </div>
       <div className="msg-btn border border-dark">
-        <SendMsg/>
+        <SendMsg chatId={Dataa._id}/>
       </div>
     </div>
   )

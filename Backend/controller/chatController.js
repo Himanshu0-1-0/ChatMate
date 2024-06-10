@@ -32,7 +32,7 @@ exports.addChat = async (req, res) => {
           { $push: { chats: { $each: [chat._id], $position: 0 } } }
         );
       } else {
-        // Move the existing chat to the beginning for both users
+        // Move the existing chat to the beginning for both u sers
         await User.updateMany(
           { _id: { $in: [userId, chattedUser._id] } },
           { $pull: { chats: chat._id } }

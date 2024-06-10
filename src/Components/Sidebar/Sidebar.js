@@ -142,6 +142,7 @@ export default function Sidebar() {
           chats.map((chat, index) => (
             <ConvoItem
             key={index}
+            _id={chat._id}
             name={chat.isGrpChat ? chat.grpName : chat.otherUsername}
             msg={chat.lastMessage || "No messages yet"}
             time={chat.lastMessageTime ? new Date(chat.lastMessageTime).toLocaleTimeString() : ""}

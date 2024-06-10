@@ -1,3 +1,7 @@
+.ll{
+    text-decoration: none;
+    color: black;
+}
 .convo-item-cont{
     display: flex;
     margin: 10px;

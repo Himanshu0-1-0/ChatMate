@@ -1,12 +1,12 @@
 import "./SelfMsg.css"
 
-export default function SelfMsg() {
+export default function SelfMsg({content,timestamp}) {
   return (
     <div className="SelfMsg-cont">
       <div className="msg-s">
-      <div className="self-nam">Himanshu</div>
-        <div className="self-gg">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia, impedit eveniet doloremque illo odit modi aspernatur veniam magnam fugit deleniti voluptas est hic maxime eligendi aliquid labore minima eius vitae!</div>
-        <div className="self-time">9:05am</div>
+      <div className="self-nam">You</div>
+        <div className="self-gg">{content}</div>
+        <div className="self-time">{timestamp}</div>
       </div>
     </div>
   )
