@@ -1,7 +1,19 @@
 import "./Navbar.css";
 import ChatIcon from '@mui/icons-material/Chat';
 import PersonIcon from '@mui/icons-material/Person';
-export default function Navbar() {
+import { useRouter } from 'next/navigation'
+export default function Navbar({setCurrentState}) {
+  const router = useRouter()
+  const handleChngChat  =async()=>{
+    setCurrentState('chats')
+  }
+  const handleChngProf =async()=>{
+    setCurrentState('profile')
+  }
+  const handleLogout =async()=>{
+    localStorage.removeItem('token');
+    router.push("/")
+  }
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary navv">
@@ -30,9 +42,9 @@ export default function Navbar() {
             <ul className="navbar-nav mx-5 " >
               <li className="nav-item itl">
                 <ChatIcon/>
-                <a className="nav-link text" href="#">
+                <button className="nav-link text"  onClick={handleChngChat}>
                   Chats
-                </a>
+                </button>
               </li>
               <li className="nav-item dropdown itl">
                 <PersonIcon/>
@@ -47,14 +59,14 @@ export default function Navbar() {
                 </a>
                 <ul className="dropdown-menu">
                   <li>
-                    <a className="dropdown-item text" href="#">
+                    <button className="dropdown-item text"  onClick={handleChngProf}>
                       Profile Page
-                    </a>
+                    </button>
                   </li>
                   <li>
-                    <a className="dropdown-item text" href="#">
+                    <button className="dropdown-item text" onClick={handleLogout}>
                       Logout
-                    </a>
+                    </button>
                   </li>
                 </ul>
               </li>

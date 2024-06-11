@@ -2,7 +2,7 @@
 import "./ProfilePage.css"
 import { toast } from 'react-toastify';
 import { useRef,useState } from "react";
-export default function ProfilePage() {
+export default function ProfilePage({user}) {
     const [selectedFile, setSelectedFile] = useState(null);
     
 
@@ -100,7 +100,7 @@ export default function ProfilePage() {
             const data = await response.json();
             successToast("Image Uploaded");
           } catch (error) {
-            errorToast("An error occurred while uploading the image");
+            errorToast("An error occurred while uploading the image.. Try choosing another image");
             console.error("Error uploading image:", error);
           }
       
@@ -112,7 +112,7 @@ export default function ProfilePage() {
       {/* Profile Photo */}
       <div className="text-center mb-3">
         <img
-          src="/convoitem/icon1.avif" 
+          src={user.profilePic } 
           alt="Profile"
           className="img-fluid rounded-circle profile-photo prof-img"
         />
@@ -127,13 +127,13 @@ export default function ProfilePage() {
         <div className="col-md-6">
           <div className="form-group">
             <label htmlFor="username">Username</label>
-            <input type="text" className="form-control red-on" id="username" value="JohnDoe" readOnly />
+            <input type="text" className="form-control red-on" id="username" value={user?user.username:"Loading"} readOnly />
           </div>
         </div>
         <div className="col-md-6">
           <div className="form-group">
             <label htmlFor="email">Email</label>
-            <input type="email" className="form-control red-on" id="email" value="johndoe@example.com" readOnly />
+            <input type="email" className="form-control red-on" id="email" value={user?user.email:"Loading"} readOnly />
           </div>
         </div>
       </div>

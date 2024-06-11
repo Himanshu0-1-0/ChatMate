@@ -6,8 +6,9 @@ import { useState ,useEffect} from "react";
 export default function WorkingArea({chatID}) {
   const [Dataa, setDataa] = useState(null);
   const [isLoading,setIsLoading] =useState(true);
-  if(chatID!=='homepage'){
+  if(chatID.length===24){
     useEffect(() => {
+      setIsLoading(true);
       if (chatID) {
         const fetchChatDetails = async () => {
           try {
@@ -44,7 +45,7 @@ export default function WorkingArea({chatID}) {
             <Sidebar/>
         </div>
         <div className="changeArea ">
-          {chatID=='homepage'? undefined : (isLoading? undefined:<Chat Dataa={Dataa}/>)}
+          {chatID=='homepage'? <div className="pogo"><img src="/Logo.png" alt="Logo"></img></div> : (isLoading? <div>Loading...</div>:<Chat Dataa={Dataa}/>)}
         </div>
       </div>
     </>

@@ -20,3 +20,7 @@
     overflow-x: hidden;
     overflow-y: auto;
 }
+.pogo{
+    margin-left: 50%;
+    transform: translateX(-50%);
+}

@@ -2,8 +2,9 @@
 import { useState, useRef } from 'react';
 import styles from './Signin.module.css';
 import { toast } from 'react-toastify';
-
+import { useRouter } from 'next/navigation';
 export default function Signin() {
+  const router= useRouter();
   const [isSignIn, setIsSignIn] = useState(true);
   const loginFormRef = useRef(null);
   const registerFormRef = useRef(null);
@@ -65,7 +66,7 @@ export default function Signin() {
         const data = await response.json();
         localStorage.setItem('token', data.token);
         successToast('Logged in successfully');
-        // Handle successful login
+        router.push("/Chats/homepage")
       } else {
         const errorData = await response.json();
         errorToast(`Login failed: ${errorData.error}`);
@@ -123,7 +124,7 @@ export default function Signin() {
       const data = await response.json();
       localStorage.setItem('token', data.token);
       successToast('Registered Successfully');
-      // redirect
+      router.push("/Chats/homepage")
     } catch (error) {
       errorToast('Registration failed: ' + error.message);
     }

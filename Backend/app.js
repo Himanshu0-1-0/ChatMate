@@ -49,7 +49,7 @@ function checkFileType(file, cb) {
   }
 const upload = multer({
     storage: storage,
-    limits: { fileSize: 1000000 }, 
+    limits: { fileSize: 1500000 }, 
     fileFilter: function(req, file, cb) {
       checkFileType(file, cb);
     }
@@ -70,7 +70,7 @@ app.post('/uploadProfilePic', authMiddleware ,async (req, res) => {
       try {
         const user = await User.findByIdAndUpdate(
           req.user.id,
-          { profilePic: `/uploads/profilePics/${req.file.filename}` },
+          { profilePic: `http://localhost:5000/uploads/profilePics/${req.file.filename}` },
           { new: true }
         );
   

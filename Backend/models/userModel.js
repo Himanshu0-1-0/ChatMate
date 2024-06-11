@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  profilePic: {
+  profilePic: { 
     type: String,
     default: 'http://localhost:5000/uploads/profilePics/profilePic-1717740514303.png', 
   }, 
