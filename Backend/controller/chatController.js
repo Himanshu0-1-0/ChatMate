@@ -197,3 +197,34 @@ exports.getChat = async (req, res) => {
     }
 
   }
+
+  exports.removeUser = async (req,res)=>{
+    const {chatId,userId} =req.body;
+    if(!chatId || !userId){
+      return res.status(400).send('Some Error Extracting the Data')
+    }
+
+    try{
+      const chat = await Chat.findById(chatId);
+      if (!chat) {
+        return res.status(404).send('Chat not found');
+      }
+
+      chat.members = chat.members.filter(member => member.toString() !== userId);
+      await chat.save();
+
+
+      const user = await User.findById(userId);
+    if (user) {
+      user.chats = user.chats.filter(chat => chat.toString() !== chatId);
+      await user.save();
+    }
+
+    
+      res.status(200).send(chat);
+
+    }catch{
+      console.error('Error removing member:', error);
+      res.status(500).send(error);
+    }
+  }

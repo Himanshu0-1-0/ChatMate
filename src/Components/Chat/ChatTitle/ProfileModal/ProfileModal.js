@@ -118,6 +118,28 @@ const ProfileModal = ({ isOpen, onRequestClose, Dataa }) => {
     }
   }
 
+  const removePerson =async(userId)=>{
+    try{
+        const response = await fetch("http://localhost:5000/chat/removeUser",{
+            method:'POST',
+            headers:{
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify({userId,chatId:Dataa._id})
+        })
+        if(!response.ok){
+            const errorData = await response.json();
+            errorToast(`Error: ${errorData.message || 'Failed to update group info.'}`);
+            return;
+        }
+        const data=await response.json();
+        successToast("User Removed")
+    }catch{
+        errorToast('An error occurred while removing the user');
+    }
+  }
+
   return (
     <div>
       <Modal
@@ -221,7 +243,7 @@ const ProfileModal = ({ isOpen, onRequestClose, Dataa }) => {
                       />
                       {Dataa.admin._id === Dataa.selfId && (
                         <div className="input-group-append">
-                          <button className="btn btn-danger">Remove</button>
+                          <button className="btn btn-danger" onClick={()=>{removePerson(member._id)}}>Remove</button>
                         </div>
                       )}
                     </div>
