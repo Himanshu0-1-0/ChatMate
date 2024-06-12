@@ -10,7 +10,7 @@ export default function Sidebar() {
   //states
   const [isGrpModalOpen,setIsGrpModalOpen] = useState(false);
   const [chats, setChats] = useState([]);
-
+  const [isLoad,setIsLoad]=useState(true);
   //refs
   const SearchBoxRef= useRef(null);
 
@@ -44,6 +44,7 @@ export default function Sidebar() {
 
   useEffect(() => {
     const fetchChats = async () => {
+      setIsLoad(true);
       try {
         const response = await fetch('http://localhost:5000/chat/getchats', {
           method: 'GET',
@@ -59,6 +60,8 @@ export default function Sidebar() {
         setChats(data.chats);
       } catch (error) {
         errorToast(error.message);
+      } finally{
+        setIsLoad(false);
       }
     };
     fetchChats();
@@ -136,9 +139,9 @@ export default function Sidebar() {
         </div>
       </div>
       <div className="convo border border-dark">
-      {chats.length===0 ? ( // Show loading text if loading
+      {isLoad ? ( // Show loading text if loading
           <div className="loading-text">Loading...</div>
-        ) : (
+        ) : ( chats.length ===0 ? <div><h3>Search Usernames to add to chat..</h3></div>:
           chats.map((chat, index) => (
             <ConvoItem
             key={index}

@@ -3,13 +3,14 @@ import Navbar from "../Navbar/Navbar"
 import WorkingArea from "../WorkingArea/WorkingArea"
 import ProfilePage from "../ProfilePage/ProfilePage"
 import { toast } from 'react-toastify';
+import { useRouter } from "next/navigation";
 import "./MainPage.css"
 import { useState,useEffect } from "react"
 export default function MainPage({chatID}) {
   const [currentState, setCurrentState] = useState('chats');
   const [user, setUser] = useState(null);
   const [loadings, setLoadings] = useState(true);
-
+  const router= useRouter();
 
 
   const errorToast = (msg) => {
@@ -48,9 +49,10 @@ export default function MainPage({chatID}) {
         setUser(data);
       } catch (error) {
         errorToast(`Error: ${error.message}`);
+        router.push('/Signin')
       } finally {
         setLoadings(false);
-        console.log(user)
+        // console.log(user)
       }
     };
 

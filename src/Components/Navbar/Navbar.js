@@ -12,7 +12,7 @@ export default function Navbar({setCurrentState}) {
   }
   const handleLogout =async()=>{
     localStorage.removeItem('token');
-    router.push("/")
+    router.push("/Signin")
   }
   return (
     <>

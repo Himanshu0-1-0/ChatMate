@@ -7,7 +7,7 @@ export default function Chat({Dataa}) {
   return (
     <div className="chat-cont">
       <div className="chat-title border border-dark">
-        <ChatTitle per_name={Dataa.isGrpChat?Dataa.grpName:Dataa.otherUsername} per_pic={Dataa.isGrpChat?Dataa.grpProfilePic:Dataa.otherUserProfilePic}/>
+        <ChatTitle per_name={Dataa.isGrpChat?Dataa.grpName:Dataa.otherUsername} per_pic={Dataa.isGrpChat?Dataa.grpProfilePic:Dataa.otherUserProfilePic} Dataa={Dataa}/>
       </div>
       <div className="msg-area border border-dark">
         <MsgArea Dataa={Dataa}/>

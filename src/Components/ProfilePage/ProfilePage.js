@@ -114,7 +114,7 @@ export default function ProfilePage({user}) {
         <img
           src={user.profilePic } 
           alt="Profile"
-          className="img-fluid rounded-circle profile-photo prof-img"
+          className="img-fluid rounded-circle profile-photo prof-img border "
         />
         <div className="ll">
         <input type="file"  onChange={handleFileChange} className="mx-4" name="image"/>
