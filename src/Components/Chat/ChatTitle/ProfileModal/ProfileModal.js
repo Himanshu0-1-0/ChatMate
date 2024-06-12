@@ -1,10 +1,43 @@
 "use client";
-import { WidthFull } from "@mui/icons-material";
+import { toast } from "react-toastify";
 import "./ProfileModal.css";
-import React from "react";
+import { useState,useRef } from "react";
 import Modal from "react-modal";
 
 const ProfileModal = ({ isOpen, onRequestClose, Dataa }) => {
+    const [selectedFile, setSelectedFile] = useState(null);
+    const grpNameRef =useRef(null);
+    const handleFileChange = (event) => {
+        setSelectedFile(event.target.files[0]);
+      };
+
+    // toasts
+  const errorToast = (msg) => {
+    toast.error(msg, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+
+  const successToast = (msg) => {
+    toast.success(msg, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+  //
   const customStyles = {
     content: {
       top: "50%",
@@ -22,9 +55,69 @@ const ProfileModal = ({ isOpen, onRequestClose, Dataa }) => {
     },
   };
 
-  // let subtitle;
-  console.log(Dataa.admin);
-  console.log(Dataa.selfId);
+  const handleUpload = async () => {
+    if (!selectedFile) {
+      errorToast('Please select a file.');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('image', selectedFile);
+    formData.append('chatId', Dataa._id);
+
+    try {
+      const response = await fetch('http://localhost:5000/uploadGroupProfilePic', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`, 
+        },
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        errorToast(`Error: ${errorData.message || 'Failed to upload image.'}`);
+        return;
+      }
+
+      const data = await response.json();
+      successToast('Group profile picture uploaded successfully.');
+      // Handle the success response data if needed
+      console.log(data);
+    } catch (error) {
+    //   console.error('Error uploading image:', error);
+      errorToast('An error occurred while uploading the image.');
+    }
+  };
+
+  const handleChngGrp =async ()=>{
+    const name= grpNameRef.current.value.trim();
+    if(name===""){
+        errorToast("Enter Valid Grp Name");
+        return;
+    }
+    try{
+        const response= await fetch("http://localhost:5000/chat/changeGrpName",{
+            method:"POST",
+            headers:{
+                'Authorization':`Bearer ${localStorage.getItem('token')}`,
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({ chatId:Dataa._id, name }),
+        })
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        errorToast(`Error: ${errorData.message || 'Failed to update group info.'}`);
+        return;
+      }
+      const data = await response.json();
+      successToast('Group name updated successfully.');
+    }catch{
+        errorToast('An error occurred while updating the group name.');
+    }
+  }
+
   return (
     <div>
       <Modal
@@ -59,10 +152,11 @@ const ProfileModal = ({ isOpen, onRequestClose, Dataa }) => {
                       className="form-control form-control-sm"
                       id="formFileSm"
                       type="file"
+                      onChange={handleFileChange}
                     />
                   </div>
-                  <button className="btn btn-primary">
-                    Change Profile Photo
+                  <button className="btn btn-primary" onClick={handleUpload}>
+                    Change Grp Photo
                   </button>
                 </div>
               ) : undefined}
@@ -88,9 +182,10 @@ const ProfileModal = ({ isOpen, onRequestClose, Dataa }) => {
                       placeholder="Change Grp Name"
                       aria-label="Recipient's username"
                       aria-describedby="basic-addon2"
+                      ref={grpNameRef}
                     />
                     <div class="input-group-append">
-                      <button class="btn btn-outline-secondary" type="button">
+                      <button class="btn btn-outline-secondary" type="button" onClick={handleChngGrp}>
                         Change
                       </button>
                     </div>

@@ -25,6 +25,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 const User = require("./models/userModel.js")
+const Chat = require("./models/chatModel.js")
 const authMiddleware =require("./middleware/authMiddleware.js")
 const multer = require('multer');
 const storage = multer.diskStorage({
@@ -85,7 +86,34 @@ app.post('/uploadProfilePic', authMiddleware ,async (req, res) => {
       }
     });
   });
-
+  app.post('/uploadGroupProfilePic', authMiddleware, async (req, res) => {
+    upload(req, res, async (err) => {
+      if (err) {
+        return res.status(400).send(err);
+      }
+  
+      if (req.file === undefined) {
+        return res.status(400).send('No file selected');
+      }
+  
+      try {
+        const chat = await Chat.findByIdAndUpdate(
+          req.body.chatId,
+          { chatProfilePic: `http://localhost:5000/uploads/profilePics/${req.file.filename}` },
+          { new: true }
+        );
+  
+        if (!chat) {
+          return res.status(404).send('Chat not found');
+        }
+  
+        res.status(200).send(chat);
+      } catch (error) {
+        console.error('Error updating chat:', error);
+        res.status(500).send(error);
+      }
+    });
+  });
 
 //
 

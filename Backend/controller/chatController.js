@@ -171,3 +171,29 @@ exports.getChat = async (req, res) => {
       res.status(500).json({ error: 'Internal server error' });
     }
   };
+
+  exports.changeGrpName =async (req,res)=>{
+    const { chatId, name } = req.body;
+
+    if (!chatId || !name) {
+      return res.status(400).send('chatId and Name are required');
+    }
+
+    try {
+      const chat = await Chat.findByIdAndUpdate(
+        chatId,
+        { chatName: name },
+        { new: true }
+      );
+  
+      if (!chat) {
+        return res.status(404).send('Chat not found');
+      }
+  
+      res.status(200).send(chat);
+    } catch (error) {
+      console.error('Error updating chat:', error);
+      res.status(500).send(error);
+    }
+
+  }
