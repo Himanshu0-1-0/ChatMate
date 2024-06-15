@@ -38,6 +38,8 @@ export default function WorkingArea({chatID}) {
       }
     }, [chatID]);
   }
+
+
   return (
     <>
       <div className="con">

@@ -2,8 +2,17 @@ require('dotenv').config();
 
 const express=require("express")
 const mongoose =require("mongoose")
+const { createServer } = require("http");
+const { initializeSocket } = require('./socket');
+
+// const { Server } = require("socket.io");
+
 
 const app=express(); 
+const httpServer = createServer(app);
+initializeSocket(httpServer);
+
+
 const PORT =process.env.PORT || 5000;
 const path = require('path');
 mongoose.connect("mongodb://localhost:27017/ChatBiz") 
@@ -19,6 +28,11 @@ app.use(cors());
 app.use(express.static("public"))
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+
+
+
+
 
 
 //multer
@@ -122,8 +136,12 @@ app.use("/chat",chatRoute);
 app.use("/msg",msgRoute);
 
 
-app.listen(PORT,()=>{
-    console.log("server running on PORT "+PORT);
-})
+
+httpServer.listen(PORT,()=>{
+  console.log("Server Connected")
+});
+// app.listen(PORT,()=>{
+//     console.log("server running on PORT "+PORT);
+// })
 
 // wb3KwSRxw52UaP9j

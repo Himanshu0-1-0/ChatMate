@@ -1,9 +1,15 @@
 import "./MsgArea.css"
 import SelfMsg from "./SelfMsg/SelfMsg"
 import OtherMsg from "./OtherMsg/OtherMsg"
-import { useRef,useEffect } from "react";
-export default function MsgArea({ Dataa }) {
+import { useRef,useEffect,useState } from "react";
+import io from 'socket.io-client';
 
+let socket;
+
+export default function MsgArea({ Dataa }) {
+ 
+
+  const [messages, setMessages] = useState(Dataa.messages);
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -12,13 +18,32 @@ export default function MsgArea({ Dataa }) {
 
   useEffect(() => {
     scrollToBottom();
-  }, [Dataa.messages]); 
+  }, [messages]); 
+  useEffect(() => {
 
+    socket = io('http://localhost:5000', {
+      auth: {
+        token: localStorage.getItem('token'), // Ensure you have a valid token stored in the browser
+      },
+    });
+
+    // Listen for 'newMessage' event
+    socket.on('newMessage', (message) => {
+      console.log('New message received:', message);
+      setMessages(prevMessages => [...prevMessages, message]); // Add new message to state
+      scrollToBottom(); // Scroll to bottom when new message arrives
+    });
+
+    // Clean up socket event listener on unmount
+    return () => {
+      socket.off('newMessage');
+    };
+  }, []);
 
   return (
     <div className="msgg-con">
       <div className="msges">
-      {Dataa.messages.map((msg, index) => {
+      {messages.map((msg, index) => {
           // Determine if the message is from the current user or from another user
           const isSelfMsg = msg.sender._id === Dataa.selfId;
 

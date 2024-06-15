@@ -3,6 +3,9 @@ const Message = require('../models/msgModel');
 const User = require('../models/userModel');
 const mongoose= require("mongoose");
 
+const { getIo } = require('../socket');
+const io =getIo();
+
 exports.getMsg = async (req, res) => {
   const { chatId } = req.body;
   const userId = req.user.id;
@@ -96,6 +99,15 @@ exports.sendMessage = async (req, res) => {
   
       // Wait for all user updates to complete
       await Promise.all(userUpdates);
+
+      io.to(chatId.toString()).emit('newMessage', {
+        _id: savedMessage._id,
+        sender: savedMessage.sender,
+        chat: savedMessage.chat,
+        content: savedMessage.content,
+        createdAt: savedMessage.createdAt,
+      });
+      console.log("msg "+chatId.toString())
   
       res.status(201).json(savedMessage);
     } catch (error) {

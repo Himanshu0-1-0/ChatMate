@@ -4,6 +4,8 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import PublicIcon from "@mui/icons-material/Public";
 import ConvoItem from "../ConvoItem/ConvoItem";
 import GroupModal from "./GrpModal/GrpModal";
+import io from 'socket.io-client';
+
 import { toast } from 'react-toastify';
 import { useState,useRef,useEffect } from "react";
 export default function Sidebar() {
@@ -104,6 +106,31 @@ export default function Sidebar() {
       errorToast(error.message);
     }
   };
+
+  useEffect(() => {
+    if (!chats.length) return; // Wait until chats are loaded
+
+    const socket = io('http://localhost:5000', {
+      auth: {
+        token: localStorage.getItem('token') || '',
+      },
+    });
+
+    socket.on('connect', () => {
+      console.log('Connected to socket.io server');
+
+      // Join all chat rooms
+      chats.forEach(chat => {
+        socket.emit('joinRoom', chat._id);
+        console.log(`Joined room: ${chat._id}`);
+      });
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, [chats]);
+
 
   // return
   return (

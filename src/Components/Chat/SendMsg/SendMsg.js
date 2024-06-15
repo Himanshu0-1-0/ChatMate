@@ -1,6 +1,8 @@
 import "./SendMsg.css"
 import SendIcon from '@mui/icons-material/Send';
 import { useRef } from 'react';
+
+
 export default function SendMsg({chatId}) {
   const messageRef = useRef();
 
