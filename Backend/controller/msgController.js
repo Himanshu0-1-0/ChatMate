@@ -3,8 +3,8 @@ const Message = require('../models/msgModel');
 const User = require('../models/userModel');
 const mongoose= require("mongoose");
 
-const { getIo } = require('../socket');
-const io =getIo();
+// const { getIo } = require('../socket');
+// const io =getIo();
 
 exports.getMsg = async (req, res) => {
   const { chatId } = req.body;
@@ -52,66 +52,66 @@ exports.getMsg = async (req, res) => {
 
 
 
-exports.sendMessage = async (req, res) => {
-    const { chatId, content } = req.body;
-    const senderId = req.user.id;
+// exports.sendMessage = async (req, res) => {
+//     const { chatId, content } = req.body;
+//     const senderId = req.user.id;
   
-    if (!chatId || !content) {
-      return res.status(400).json({ error: 'Chat ID and content are required' });
-    }
-    if (!mongoose.Types.ObjectId.isValid(chatId)) {
-        return res.status(400).json({ error: "Invalid chatId" });
-      }
+//     if (!chatId || !content) {
+//       return res.status(400).json({ error: 'Chat ID and content are required' });
+//     }
+//     if (!mongoose.Types.ObjectId.isValid(chatId)) {
+//         return res.status(400).json({ error: "Invalid chatId" });
+//       }
   
-    try {
-      const newMessage = new Message({
-        sender: senderId,
-        chat: chatId,
-        content,
-      });
+//     try {
+//       const newMessage = new Message({
+//         sender: senderId,
+//         chat: chatId,
+//         content,
+//       });
   
-      const savedMessage = await newMessage.save();
+//       const savedMessage = await newMessage.save();
   
-      // Update last message in the chat
-      const chat = await Chat.findByIdAndUpdate(
-        chatId,
-        { lastMessage: savedMessage._id, lastMessageTime: savedMessage.createdAt },
-        { new: true }
-      );
+//       // Update last message in the chat
+//       const chat = await Chat.findByIdAndUpdate(
+//         chatId,
+//         { lastMessage: savedMessage._id, lastMessageTime: savedMessage.createdAt },
+//         { new: true }
+//       );
   
-      if (!chat) {
-        return res.status(404).json({ error: 'Chat not found' });
-      }
+//       if (!chat) {
+//         return res.status(404).json({ error: 'Chat not found' });
+//       }
 
-      const memberIds = chat.members.map(member => member._id);
-      const userUpdates = memberIds.map(userId => {
-        return User.findByIdAndUpdate(
-          userId,
-          { $pull: { chats: chatId } }, // Remove chatId if it already exists
-          { new: true }
-        ).then(() => {
-          return User.findByIdAndUpdate(
-            userId,
-            { $push: { chats: { $each: [chatId], $position: 0 } } } // Add chatId at the beginning
-          );
-        });
-      });
+//       const memberIds = chat.members.map(member => member._id);
+//       const userUpdates = memberIds.map(userId => {
+//         return User.findByIdAndUpdate(
+//           userId,
+//           { $pull: { chats: chatId } }, // Remove chatId if it already exists
+//           { new: true }
+//         ).then(() => {
+//           return User.findByIdAndUpdate(
+//             userId,
+//             { $push: { chats: { $each: [chatId], $position: 0 } } } // Add chatId at the beginning
+//           );
+//         });
+//       });
   
-      // Wait for all user updates to complete
-      await Promise.all(userUpdates);
+//       // Wait for all user updates to complete
+//       await Promise.all(userUpdates);
 
-      io.to(chatId.toString()).emit('newMessage', {
-        _id: savedMessage._id,
-        sender: savedMessage.sender,
-        chat: savedMessage.chat,
-        content: savedMessage.content,
-        createdAt: savedMessage.createdAt,
-      });
-      console.log("msg "+chatId.toString())
+//       io.to(chatId.toString()).emit('newMessage', {
+//         _id: savedMessage._id,
+//         sender: savedMessage.sender,
+//         chat: savedMessage.chat,
+//         content: savedMessage.content,
+//         createdAt: savedMessage.createdAt,
+//       });
+//       console.log("msg "+chatId.toString())
   
-      res.status(201).json(savedMessage);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Server error' });
-    }
-  };
+//       res.status(201).json(savedMessage);
+//     } catch (error) {
+//       console.error(error);
+//       res.status(500).json({ error: 'Server error' });
+//     }
+//   };

@@ -2,16 +2,14 @@ import "./MsgArea.css"
 import SelfMsg from "./SelfMsg/SelfMsg"
 import OtherMsg from "./OtherMsg/OtherMsg"
 import { useRef,useEffect,useState } from "react";
-import io from 'socket.io-client';
 
-let socket;
+// let socket;
 
-export default function MsgArea({ Dataa }) {
+export default function MsgArea({ messages,Dataa}) {
  
 
-  const [messages, setMessages] = useState(Dataa.messages);
   const messagesEndRef = useRef(null);
-
+  
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -19,26 +17,26 @@ export default function MsgArea({ Dataa }) {
   useEffect(() => {
     scrollToBottom();
   }, [messages]); 
-  useEffect(() => {
+  // useEffect(() => {
 
-    socket = io('http://localhost:5000', {
-      auth: {
-        token: localStorage.getItem('token'), // Ensure you have a valid token stored in the browser
-      },
-    });
+  //   socket = io('http://localhost:5000', {
+  //     auth: {
+  //       token: localStorage.getItem('token'), // Ensure you have a valid token stored in the browser
+  //     },
+  //   });
 
-    // Listen for 'newMessage' event
-    socket.on('newMessage', (message) => {
-      console.log('New message received:', message);
-      setMessages(prevMessages => [...prevMessages, message]); // Add new message to state
-      scrollToBottom(); // Scroll to bottom when new message arrives
-    });
+  //   // Listen for 'newMessage' event
+  //   socket.on('newMessage', (message) => {
+  //     console.log('New message received:', message);
+  //     setMessages(prevMessages => [...prevMessages, message]); // Add new message to state
+  //     scrollToBottom(); // Scroll to bottom when new message arrives
+  //   });
 
-    // Clean up socket event listener on unmount
-    return () => {
-      socket.off('newMessage');
-    };
-  }, []);
+  //   // Clean up socket event listener on unmount
+  //   return () => {
+  //     socket.off('newMessage');
+  //   };
+  // }, []);
 
   return (
     <div className="msgg-con">

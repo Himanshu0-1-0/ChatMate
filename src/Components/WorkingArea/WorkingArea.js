@@ -5,6 +5,7 @@ import "./WorkingArea.css"
 import { useState ,useEffect} from "react";
 export default function WorkingArea({chatID}) {
   const [Dataa, setDataa] = useState(null);
+  const [messages, setMessages] = useState(null);
   const [isLoading,setIsLoading] =useState(true);
   if(chatID.length===24){
     useEffect(() => {
@@ -26,6 +27,8 @@ export default function WorkingArea({chatID}) {
             if (response.ok) {
               setDataa(data);
               setIsLoading(false);
+              setMessages(data.messages)
+              console.log(data.messages)
             } else {
               console.error(data.error || "Failed to fetch chat details");
             }
@@ -44,10 +47,10 @@ export default function WorkingArea({chatID}) {
     <>
       <div className="con">
         <div className="sidebar">
-            <Sidebar/>
+            <Sidebar setMessages={setMessages} />
         </div>
         <div className="changeArea ">
-          {chatID=='homepage'? <div className="pogo"><img src="/Logo.png" alt="Logo"></img></div> : (isLoading? <div>Loading...</div>:<Chat Dataa={Dataa}/>)}
+          {chatID=='homepage'? <div className="pogo"><img src="/Logo.png" alt="Logo"></img></div> : (isLoading? <div>Loading...</div>:<Chat Dataa={Dataa} messages={messages}/>)}
         </div>
       </div>
     </>

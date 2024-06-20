@@ -1,6 +1,7 @@
 const express = require('express');
 const authMiddleware = require('../middleware/authMiddleware.js');
-const {getMsg,sendMessage } = require('../controller/msgController.js');
+const {getMsg } = require('../controller/msgController.js');
+const {sendMessage} =require ('../socket.js')
 
 const msgRoute = express.Router();
 

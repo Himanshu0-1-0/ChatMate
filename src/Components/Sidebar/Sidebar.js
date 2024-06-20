@@ -8,7 +8,7 @@ import io from 'socket.io-client';
 
 import { toast } from 'react-toastify';
 import { useState,useRef,useEffect } from "react";
-export default function Sidebar() {
+export default function Sidebar({setMessages}) {
   //states
   const [isGrpModalOpen,setIsGrpModalOpen] = useState(false);
   const [chats, setChats] = useState([]);
@@ -124,6 +124,11 @@ export default function Sidebar() {
         socket.emit('joinRoom', chat._id);
         console.log(`Joined room: ${chat._id}`);
       });
+    });
+
+    socket.on('newMessage', (message) => {
+      console.log('New message received:', message);
+      setMessages(prevMessages => [...prevMessages, message]);
     });
 
     return () => {
