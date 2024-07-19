@@ -1,27 +1,40 @@
-import "./Navbar.css";
+'use client';
+import React from "react";
 import ChatIcon from '@mui/icons-material/Chat';
 import PersonIcon from '@mui/icons-material/Person';
-import { useRouter } from 'next/navigation'
-export default function Navbar({setCurrentState}) {
-  const router = useRouter()
-  const handleChngChat  =async()=>{
-    setCurrentState('chats')
-  }
-  const handleChngProf =async()=>{
-    setCurrentState('profile')
-  }
-  const handleLogout =async()=>{
+import { useRouter } from 'next/navigation';
+import "./Navbar.css";
+
+export default function Navbar({ setCurrentState ,toggleSidebar}) {
+  const router = useRouter();
+  
+  const handleChngChat = async () => {
+    setCurrentState('chats');
+  };
+  
+  const handleChngProf = async () => {
+    setCurrentState('profile');
+  };
+  
+  const handleLogout = async () => {
     localStorage.removeItem('token');
-    router.push("/Signin")
-  }
+    router.push("/Signin");
+  };
+
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary navv">
         <div className="container-fluid">
-            <div className="fulllogo">
-                <img src="/Logo-Img.png" alt="Logo" className="ico"/>
-                <img src="/Name.png" alt="ChatMate" className="Logo-img" />
-            </div>
+          <div className="fulllogo">
+            <img src="/Logo-Img.png" alt="Logo" className="ico" />
+            <img src="/Name.png" alt="ChatMate" className="Logo-img" />
+          </div>
+          
+          {/* New toggle button for smaller screens */}
+          <button className="nav-toggle-btn border border-dark" onClick={toggleSidebar}>
+            Chats..
+          </button>
+          
           <button
             className="navbar-toggler"
             type="button"
@@ -34,20 +47,15 @@ export default function Navbar({setCurrentState}) {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNavDropdown">
-          </div>
-          <div className="collapse navbar-collapse" id="navbarNavDropdown">
-          </div>
-        </div>
-        <div className="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul className="navbar-nav mx-5 " >
+            <ul className="navbar-nav mx-5">
               <li className="nav-item itl">
-                <ChatIcon/>
-                <button className="nav-link text"  onClick={handleChngChat}>
+                <ChatIcon />
+                <button className="nav-link text" onClick={handleChngChat}>
                   Chats
                 </button>
               </li>
               <li className="nav-item dropdown itl">
-                <PersonIcon/>
+                <PersonIcon />
                 <a
                   className="nav-link dropdown-toggle text"
                   href="#"
@@ -59,7 +67,7 @@ export default function Navbar({setCurrentState}) {
                 </a>
                 <ul className="dropdown-menu">
                   <li>
-                    <button className="dropdown-item text"  onClick={handleChngProf}>
+                    <button className="dropdown-item text" onClick={handleChngProf}>
                       Profile Page
                     </button>
                   </li>
@@ -72,6 +80,7 @@ export default function Navbar({setCurrentState}) {
               </li>
             </ul>
           </div>
+        </div>
       </nav>
     </>
   );

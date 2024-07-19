@@ -11,6 +11,10 @@ export default function MainPage({chatID}) {
   const [user, setUser] = useState(null);
   const [loadings, setLoadings] = useState(true);
   const router= useRouter();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
 
   const errorToast = (msg) => {
@@ -62,10 +66,10 @@ export default function MainPage({chatID}) {
   return (
     <>
       <div className="cont">
-        <Navbar setCurrentState={setCurrentState}/>
+        <Navbar setCurrentState={setCurrentState} toggleSidebar={toggleSidebar}/>
         {/* <WorkingArea chatID={chatID}/> */}
         {/* <ProfilePage/> */}
-        {loadings ? <div>Loading...</div>: (currentState==='chats' ? <WorkingArea chatID={chatID}/>: <ProfilePage user={user}/>)}
+        {loadings ? <div>Loading...</div>: (currentState==='chats' ? <WorkingArea chatID={chatID} isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />: <ProfilePage user={user}/>)}
       </div>
     </>
   )

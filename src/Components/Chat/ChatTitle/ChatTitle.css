@@ -3,10 +3,13 @@
     align-items: center;
     justify-content: space-between;
     height: 100%;
+    /* background-color: yellow; */
 }
 .base{
     display: flex;
     align-items: center;
+    /* background-color: blue; */
+    /* margin:0px 10px; */
 }
 .photo-prof img{
     width: 50px;
@@ -19,4 +22,17 @@
 }
 .delete{
     display: flex;
+    /* background-color: orange; */
 }
+.abcd{
+    border: none;
+    background-color: rgba(240, 248, 255, 0);
+}
+
+
+
+/* @media(max-width:600px){
+    .txtar .ip{
+        width: 35vw;
+    }
+} */

@@ -44,7 +44,7 @@ export default function SendMsg({chatId}) {
       <div className="txtar mx-2">
         <textarea className="ip" placeholder="Send Message.." rows={1} ref={messageRef}/>
       </div>
-      <div className="sendbtn mx-3"><button onClick={handleSendMessage}><SendIcon/></button></div>
+      <div className="sendbtn mx-3"><button onClick={handleSendMessage} className="abcde"><SendIcon/></button></div>
     </div>
   )
 }

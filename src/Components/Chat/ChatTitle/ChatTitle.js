@@ -1,6 +1,4 @@
 import "./ChatTitle.css"
-import DeleteIcon from '@mui/icons-material/Delete';
-import CallIcon from '@mui/icons-material/Call';
 import GroupIcon from '@mui/icons-material/Group';
 import ProfileModal from "./ProfileModal/ProfileModal"
 import { useState } from "react";
@@ -24,8 +22,8 @@ export default function ChatTitle({per_name,per_pic,Dataa}) {
         </div>
       </div>
       <div className="delete mx-5">
-        <div className="del mx-4"> <button onClick={change}><GroupIcon/></button></div>
-        <div className="call "><CallIcon/></div>
+        <div className="del mx-4"> <button onClick={change} className="abcd"><GroupIcon/></button></div>
+        {/* <div className="call "><CallIcon/></div> */}
         {/* <div className="del"> <DeleteIcon/></div> */}
       </div>
     </div>

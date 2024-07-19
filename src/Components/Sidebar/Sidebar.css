@@ -1,6 +1,11 @@
 .conta{
     width: 34.5vw;
     overflow:hidden ;
+    /* background-color: blue; */
+    height: 82vh;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
 }
 .topp{
     /* background-color: bl; */
@@ -27,7 +32,7 @@
 }
 
 .search{
-    margin: 10px;
+    margin:3px 10px;
     /* height: 6vh; */
     /* background-color: black; */
 }
@@ -36,11 +41,12 @@
 }
 .convo{
     /* background-color: rebeccapurple; */
-    margin: 10px;
+    margin:3px 10px;
     border-radius: 5px;
     height: 66vh;
     overflow-x: hidden;
     overflow-y: auto;
+    flex: 1;
 }
 .loading-text{
     font-size: 1.4rem;
@@ -48,9 +54,10 @@
     margin: 15px;
     animation: blink 1.5s linear infinite;
 }
-@media (max-width:815px){
-    .p{
-        display: none;
+@media (max-width:845px){
+   
+    .conta{
+        width: 97vw;
     }
 }
 @keyframes blink {

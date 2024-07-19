@@ -7,7 +7,7 @@
     margin: 10px;
     margin-left: 30px;
     margin-top: 20px;
-    /* background-color: black; */
+    /* background-color: blue; */
     border-radius: 5px;
     /* background-color: rgb(22, 24, 21); */
     height: 65px;
@@ -18,7 +18,7 @@
     width: 30vw;
     display: flex;
     align-items: center;
-    
+    /* background-color: yellow;. */
 }
 .convo-img img{
     width: 55px;
@@ -40,19 +40,23 @@
 .last-msg{
     font-size: 0.9rem;
     color: #777;
+    /* background-color: blue; */
+    min-width: 140px;
 }
 .last-seen{
-    margin-left: 7vw;
+    /* margin-left: 7vw; */
     color: #777;
-    font-size: 0.9rem;
+    font-size: 0.84rem;
     margin-right: 4vw;
+    /* background-color: orange; */
+    white-space: nowrap;
 }
-@media (max-width:903px){
+@media (max-width:973px){
     .convo-item-cont{
-        margin-left: 15px;
-        height: 60px;
+        margin-left: 2px;
+        /* height: 60px; */
     }
-    .div1{
+    /* .div1{
         width: 15vw;
         
     }
@@ -71,9 +75,9 @@
         color: #777;
         font-size: 0.7rem;
         margin-right: 4vw;
-    }
+    } */
 }
-
+/* 
 @media (max-width:636px){
     .convo-item-cont{
         margin-left: 15px;
@@ -132,4 +136,4 @@
         font-size: 0.7rem;
         margin-right: 4vw;
     }
-}
+} */

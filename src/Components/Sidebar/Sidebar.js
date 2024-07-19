@@ -5,6 +5,7 @@ import PublicIcon from "@mui/icons-material/Public";
 import ConvoItem from "../ConvoItem/ConvoItem";
 import GroupModal from "./GrpModal/GrpModal";
 import io from 'socket.io-client';
+import Link from "next/link";
 
 import { toast } from 'react-toastify';
 import { useState,useRef,useEffect } from "react";
@@ -142,10 +143,12 @@ export default function Sidebar({setMessages}) {
     <div className="conta">
       <GroupModal isOpen={isGrpModalOpen} onRequestClose={makeGrpModalOff}/>
       <div className="topp border border-dark">
+      {/* <Link href="/Chats/global">
         <div className="ele">
           <PublicIcon />
-          <div className="p">Global Chat</div>
+            <div className="p">Global Chat</div>
         </div>
+      </Link> */}
         <button className="grpp-btnn" onClick={handleGrpModal}>
         <div className="ele">
           <GroupsIcon />

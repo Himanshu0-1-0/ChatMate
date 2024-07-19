@@ -23,9 +23,43 @@
     font-weight: 600;
     font-size: 1.1rem;
 }
-/* @media (max-width: 991px){
-    .Logo-img{
-        width: 170px;
-        height: 50px;
+.nav-toggle-btn{
+    display: none;
+}
+
+.navbar-nav{
+    /* background-color: blue; */
+    margin-left: 30vw !important ;
+}
+@media (max-width: 991px){
+    .navbar-nav{
+        /* background-color: blue; */
+        margin-left: 5vw !important ;
     }
-} */
+}
+@media (max-width: 845px) {
+    .nav-toggle-btn {
+      display: inline-block;
+      margin-left: auto;
+      margin-right: 10px;
+      background-color: white;
+      color: black;
+      padding:5px;
+      /* border: none; */
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    /* .ico{
+        margin-left: 0vw;
+    } */
+    
+  
+    .nav-toggle-btn.hidden {
+      display: none;
+    }
+  
+    .fulllogo {
+      display: flex;
+      align-items: center;
+    }
+  }
