@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
   },
   profilePic: { 
     type: String,
-    default: 'http://localhost:5000/uploads/profilePics/profilePic-1717740514303.png', 
+    default: 'https://himanshumehta8104chatmatestoragebucket.s3.eu-north-1.amazonaws.com/profilePics/download+(1).png', 
   }, 
   chats: [{
     type: mongoose.Schema.Types.ObjectId,
