@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import Bootstrapjs from "../InstallBSJS";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import Script from 'next/script';
 export const metadata = {
   title: "ChatMate",
   description: "A app making real time chatting very easy and effective..",
@@ -32,9 +33,9 @@ export default function RootLayout({ children }) {
         theme="light"
       />
       <ToastContainer />
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <Script src="https://code.jquery.com/jquery-3.6.0.min.js"></Script>
+          <Script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></Script>
+          <Script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></Script>
       </body>
     </html>
     </>

@@ -182,7 +182,7 @@ export default function Signin() {
       <div className={styles['panels-container']}>
         <div className={`${styles.panel} ${styles['left-panel']}`}>
           <div className={styles.content}>
-            <h3>Don't have an account..?</h3>
+            <h3>Don&#39;t have an account..?</h3>
             <p>Ready to Connect? Sign up and start chatting in seconds!</p>
             <button className={`${styles.btn} ${styles.transparent}`} id="sign-up-btn" onClick={toggleForm}>
               Sign Up
