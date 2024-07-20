@@ -59,7 +59,7 @@ const TagInput = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/chat/addGrp", {
+      const response = await fetch("https://chatmate-backend-8usd.onrender.com/chat/addGrp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

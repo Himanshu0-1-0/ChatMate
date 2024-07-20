@@ -20,7 +20,7 @@ export default function WorkingArea({ chatID,isSidebarOpen}) {
       if (chatID) {
         const fetchChatDetails = async () => {
           try {
-            const response = await fetch("http://localhost:5000/msg/getMsg", {
+            const response = await fetch("https://chatmate-backend-8usd.onrender.com/msg/getMsg", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",

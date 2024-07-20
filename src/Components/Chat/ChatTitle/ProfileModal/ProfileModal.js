@@ -66,7 +66,7 @@ const ProfileModal = ({ isOpen, onRequestClose, Dataa }) => {
     formData.append('chatId', Dataa._id);
 
     try {
-      const response = await fetch('http://localhost:5000/uploadGroupProfilePic', {
+      const response = await fetch('https://chatmate-backend-8usd.onrender.com/uploadGroupProfilePic', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`, 
@@ -97,7 +97,7 @@ const ProfileModal = ({ isOpen, onRequestClose, Dataa }) => {
         return;
     }
     try{
-        const response= await fetch("http://localhost:5000/chat/changeGrpName",{
+        const response= await fetch("https://chatmate-backend-8usd.onrender.com/chat/changeGrpName",{
             method:"POST",
             headers:{
                 'Authorization':`Bearer ${localStorage.getItem('token')}`,
@@ -120,7 +120,7 @@ const ProfileModal = ({ isOpen, onRequestClose, Dataa }) => {
 
   const removePerson =async(userId)=>{
     try{
-        const response = await fetch("http://localhost:5000/chat/removeUser",{
+        const response = await fetch("https://chatmate-backend-8usd.onrender.com/chat/removeUser",{
             method:'POST',
             headers:{
                 'Content-Type': 'application/json',

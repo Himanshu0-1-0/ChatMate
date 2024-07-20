@@ -54,7 +54,7 @@ export default function Signin() {
 
     // request to backend.....
     try {
-      const response = await fetch('http://localhost:5000/user/login', {
+      const response = await fetch('https://chatmate-backend-8usd.onrender.com/user/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -103,7 +103,7 @@ export default function Signin() {
     //req to backend
     const obj = { username, email, password };
     try {
-      const response = await fetch('http://localhost:5000/user/register', {
+      const response = await fetch('https://chatmate-backend-8usd.onrender.com/user/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

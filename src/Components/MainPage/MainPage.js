@@ -37,7 +37,7 @@ export default function MainPage({chatID}) {
       setLoadings(true);
 
       try {
-        const response = await fetch('http://localhost:5000/user/getProfile', {
+        const response = await fetch('https://chatmate-backend-8usd.onrender.com/user/getProfile', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

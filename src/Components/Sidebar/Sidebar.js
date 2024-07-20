@@ -49,7 +49,7 @@ export default function Sidebar({setMessages}) {
     const fetchChats = async () => {
       setIsLoad(true);
       try {
-        const response = await fetch('http://localhost:5000/chat/getchats', {
+        const response = await fetch('https://chatmate-backend-8usd.onrender.com/chat/getchats', {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -86,7 +86,7 @@ export default function Sidebar({setMessages}) {
 
     try {
       // Make the POST request to the backend
-      const response = await fetch('http://localhost:5000/chat/addChat', {
+      const response = await fetch('https://chatmate-backend-8usd.onrender.com/chat/addChat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -111,7 +111,7 @@ export default function Sidebar({setMessages}) {
   useEffect(() => {
     if (!chats.length) return; // Wait until chats are loaded
 
-    const socket = io('http://localhost:5000', {
+    const socket = io('https://chatmate-backend-8usd.onrender.com', {
       auth: {
         token: localStorage.getItem('token') || '',
       },

@@ -48,7 +48,7 @@ export default function ProfilePage({user}) {
         }
     
         try {
-          const response = await fetch('http://localhost:5000/user/changePassword', {
+          const response = await fetch('https://chatmate-backend-8usd.onrender.com/user/changePassword', {
             method: "POST",
             headers: {
             "Content-Type": "application/json",
@@ -85,7 +85,7 @@ export default function ProfilePage({user}) {
             const storedToken = localStorage.getItem("token");
             formData.append("image", selectedFile);
         
-            const response = await fetch("http://localhost:5000/uploadProfilePic", {
+            const response = await fetch("https://chatmate-backend-8usd.onrender.com/uploadProfilePic", {
               method: "POST",
               headers:{
                 "Authorization": `Bearer ${storedToken}`,

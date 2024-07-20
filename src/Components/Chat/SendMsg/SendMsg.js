@@ -11,7 +11,7 @@ export default function SendMsg({chatId}) {
     if (message === '') return;
 
     try {
-      const response = await fetch('http://localhost:5000/msg/sendMessage', {
+      const response = await fetch('https://chatmate-backend-8usd.onrender.com/msg/sendMessage', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
