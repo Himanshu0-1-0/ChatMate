@@ -15,7 +15,11 @@ initializeSocket(httpServer);
 
 const PORT =process.env.PORT || 5000;
 const path = require('path');
-mongoose.connect("mongodb://localhost:27017/ChatBiz") 
+const dbURI = process.env.MONGODB_URI;
+
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB connected...'))
+  .catch(err => console.log(err));
 
 const userRoute =require("./routes/userRoutes.js") 
 const chatRoute =require("./routes/chatRoutes.js") 
